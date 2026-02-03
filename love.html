@@ -1,80 +1,142 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Valentine 💖</title>
-    <style>
-        body {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<title>Teddy Says 💖</title>
 
-        h1 {
-            color: white;
-            margin-bottom: 40px;
-        }
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd1dc,#ffe6f0);
+    font-family:'Comic Sans MS', cursive;
+    overflow:hidden;
+}
 
-        .buttons {
-            position: relative;
-            width: 300px;
-            height: 150px;
-        }
+.wrapper{
+    text-align:center;
+}
 
-        button {
-            padding: 12px 25px;
-            font-size: 18px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-        }
+.teddy{
+    font-size:120px;
+    animation:bounce 2s infinite;
+}
 
-        #yes {
-            background-color: #28a745;
-            color: white;
-        }
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
 
-        #no {
-            background-color: #dc3545;
-            color: white;
-            position: absolute;
-            left: 150px;
-            top: 0;
-        }
-    </style>
+.bubble{
+    background:white;
+    padding:20px 25px;
+    border-radius:20px;
+    width:300px;
+    margin:0 auto 25px;
+    position:relative;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.bubble:after{
+    content:"";
+    position:absolute;
+    bottom:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    border-width:20px 15px 0;
+    border-style:solid;
+    border-color:white transparent transparent;
+}
+
+.buttons{
+    position:relative;
+    height:120px;
+}
+
+button{
+    padding:12px 26px;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+#yes{
+    background:#ff5c8a;
+    color:white;
+}
+
+#no{
+    background:#bbb;
+    position:absolute;
+    left:160px;
+}
+
+/* floating hearts */
+.heart{
+    position:absolute;
+    color:rgba(255,0,100,0.6);
+    font-size:18px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+</style>
 </head>
+
 <body>
 
-    <h1>💌 Will you be my Valentine<br>har saal ke liye? 💌</h1>
+<audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+</audio>
 
-    <div class="buttons">
-        <button id="yes" onclick="goNext()">Yes ❤️</button>
-        <button id="no" onmouseover="moveButton()">No 💔</button>
+<div class="wrapper">
+    <div class="teddy">🧸</div>
+
+    <div class="bubble">
+        Hi… Ujjval🧸💖<br>
+        I see how special you are…<br><br>
+        Will you be my soulmate<br>
+        <b>FOREVER Valentine?</b> 💌
     </div>
 
-    <script>
-        function moveButton() {
-            const noBtn = document.getElementById("no");
-            const x = Math.random() * 200;
-            const y = Math.random() * 100;
+    <div class="buttons">
+        <button id="yes" onclick="goYes()">Yes 💞</button>
+        <button id="no" onmouseover="runAway()">No 🙈</button>
+    </div>
+</div>
 
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
-        }
+<script>
+function runAway(){
+    const no=document.getElementById("no");
+    no.style.left=Math.random()*220+"px";
+    no.style.top=Math.random()*80+"px";
+}
 
-        function goNext() {
-            window.location.href = "yes.html";
-        }
-    </script>
+function goYes(){
+    window.location.href="yes.html";
+}
+
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},350);
+</script>
 
 </body>
 </html>
+
+
 
 
